@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React Component</title>
+    <!-- Include all the CDNs here -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- BABEL script -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const App =  < >
+            <h1 className="header">React Project</h1>
+            <p className="para"> Skill used to make this project</p>
+            <div>
+                <ol>
+                    <li>HTML</li>
+                    <li>javaScript</li>
+                    <li>CSS</li>
+                </ol>    
+            </div>
+            </>;
+
+        ReactDOM.createRoot(document.getElementById("root")).render(App);
+    </script>
+</body>
+
+</html>
