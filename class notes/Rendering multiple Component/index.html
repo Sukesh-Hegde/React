@@ -1,0 +1,131 @@
+<html>
+
+<head>
+    <title> Rendering multiple Component </title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- BABEL script -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        function Studentpage() {
+            let Students = [
+                {
+                    name: "Alexa",
+                    age: 10,
+                    marks: 35,
+                    img: ""
+                },
+                {
+                    name: "Siri",
+                    age: 12,
+                    marks: 40,
+                    img: ""
+                },
+                {
+                    name: "Google",
+                    age: 13,
+                    marks: 41,
+                    img: ""
+                },
+            ]
+
+            return (
+                <>
+                    <h1> Student record </h1>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>IMAGE</th>
+                                <th>NAME</th>
+                                <th>AGE</th>
+                                <th>MARKS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Students.map((student, index) => (
+                                <tr key={index} >
+                                    <td>{student.img}</td>
+                                    <td>{student.name}</td>
+                                    <td>{student.age}</td>
+                                    <td>{student.marks}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </>
+
+            )
+        };
+
+        function CarPage() {
+            const itemsSold = [
+                { id: 1, name: "iPhone 14", price: 1200, qty: 22 },
+                { id: 2, name: "iPad Pro", price: 800, qty: 18 },
+                { id: 3, name: "Macbook Air", price: 1500, qty: 7 },
+                { id: 4, name: "Samsung S23", price: 1100, qty: 16 },
+                { id: 5, name: "Dell Inspiron 5590", price: 1200, qty: 5 }
+            ];
+            const totalRevenue = itemsSold.reduce((acc, item) => acc + item.price, 0);
+
+            return (
+                <>
+                    <h1>Record of sold items</h1>
+                    <table border="1px">
+                        {/* iterate over data here */}
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Selling price</th>
+                                <th> Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {itemsSold.map((item) => (
+                                <tr>
+                                    <td>{item.id}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.price}</td>
+                                    <td>{item.qty}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+
+
+                        <tfoot>
+                            <td>Total Revenue</td>
+                            <td colSpan="3">${totalRevenue}</td>
+                        </tfoot>
+                    </table>
+                </>
+            );
+        };
+
+        function App(){
+            let showCars = true;
+            if(showCars){
+                return  <CarPage/>
+            }
+            return (
+            <>
+             <Studentpage/>
+            </>
+            )
+        }
+
+
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+    </script>
+
+
+</body>
+
+</html>

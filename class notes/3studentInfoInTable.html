@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <title> Student Table </title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- BABEL script -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const header = <h2>This is JX Expression</h2>
+        function App() {
+            let Students = [
+                {
+                    name: "Alexa",
+                    age: 10,
+                    marks: 35,
+                    img:""
+                },
+                {
+                    name: "Siri",
+                    age: 12,
+                    marks: 40,
+                    img: ""
+                },
+                {
+                    name: "Google",
+                    age: 13,
+                    marks: 41,
+                    img: ""
+                },
+            ]
+
+            return (
+                <>
+                    <h1> Student </h1>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>IMAGE</th>
+                                <th>NAME</th>
+                                <th>AGE</th>
+                                <th>MARKS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Students.map((student, index) => (
+                                <tr key={index} >
+                                    <td>{student.img}</td>
+                                    <td>{student.name}</td>
+                                    <td>{student.age}</td>
+                                    <td>{student.marks}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </>
+
+            )
+        };
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+    </script>
+
+
+</body>
+
+</html>

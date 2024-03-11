@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <title> Rendaring Using AND Operator </title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- BABEL script -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        const header = <h2>This is JX Expression</h2>
+        function App() {
+            let loggedIn = true;
+            let name = "Alexa";
+            let lastName = "Diaz";
+            return (
+                <>
+                    <h1>Hello {loggedIn ? lastName || name : "User"}!</h1>
+                    {loggedIn && <p>Welcome to the portal</p>}
+                </>
+
+            )
+        };
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+    </script>
+
+
+</body>
+
+</html>

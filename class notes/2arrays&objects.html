@@ -15,6 +15,7 @@
 
         function App() {
             var arr = [1,2,3,4,5,6];
+            let cars=["BMW", "Audi", "omini", "Honda", "Thar"];
             const obj = {
                 name : "alexa",
                 age : 10
@@ -24,8 +25,11 @@
                 <>
                     <h1>  {arr}</h1>
                     <p> {obj.name} </p>
-                    {arr.map((num) => <h2>{num}</h2>)} // works like a for loop
-                    
+                    {arr.map((num, index) => <h2 key={index} >{num}</h2>)} 
+                    <h1>List of cars</h1>
+                    <ul>
+                    {cars.map((car,index) => (<li key={index} > {car} </li> ) )}
+                    </ul>
                 </>
 
             )
