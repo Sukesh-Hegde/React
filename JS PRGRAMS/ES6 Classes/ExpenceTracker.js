@@ -25,6 +25,7 @@
 // The class should also have a constructor that takes in the user's income and initializes the income property.
 
 // Input:
+
 // const tracker = new ExpenseTracker(5000);
 // tracker.addExpense("Rent", 1000, "2021-10-01");
 // tracker.addExpense("Groceries", 500, "2021-10-02");
