@@ -1,53 +1,14 @@
 import React from "react";
 
 class MovieCard extends React.Component {
-  constructor() {
-    super();
-    //Creating the state object
-    this.state = {
-      title: "The Avengers",
-      plot: "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
-      poster:
-        "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-      rating: "8.0",
-      price: 199,
-      stars: 0,
-    };
-    // this.addStars = this.addStars.bind(this);
-  }
-  addStars = () =>{ //arrow function will automatically bind to this
-    if (this.state.stars >= 5) {
-      return;
-    }
-    //form1
-    // this.setState({
-    //   stars: this.state.stars +0.5
-    // });
-
-    //form2
-    this.setState((prevState) => {
-      return{
-        stars: prevState.stars +0.5
-      }
-    })
-    // this.state.stars += 0.5;
-    // console.log("this: ", this.state.stars);
-  }
-
-  removeStars = ()=>{
-    if(this.state.stars<=0){
-      return;
-    }
-     this.setState((prevState) => {
-       return {
-         stars: prevState.stars - 0.5
-       };
-     });
-  }
-
+  
   render() {
-    //Destructing the state object in render function
-    const { title, plot, poster, price, rating, stars } = this.state;
+
+      const { movies, addStars, onDecStars, onClickFav, onClickAddtocart } =
+        this.props;
+
+    const { title, plot, poster, price, rating, stars, fav, isIncart } =
+      this.props.movies;
 
     return (
       <div className="main">
@@ -66,7 +27,7 @@ class MovieCard extends React.Component {
                   className="str-btn"
                   alt="Decrease"
                   src="https://cdn-icons-png.flaticon.com/128/2801/2801932.png"
-                  onClick={this.removeStars}
+                  onClick={() => onDecStars(movies)}
                 />
                 <img
                   alt="star"
@@ -77,14 +38,37 @@ class MovieCard extends React.Component {
                   className="str-btn"
                   alt="increase"
                   src="https://cdn-icons-png.flaticon.com/128/2997/2997933.png"
-                  onClick={this.addStars}
+                  onClick={() => {
+                    addStars(movies);
+                  }}
                 />
 
                 <span className="starCount">{stars}</span>
               </div>
 
-              <button className="favourite-btn"> Favorite</button>
-              <button className="cart-btn"> Add to cart</button>
+              {/* {fav ? (
+                <button className="unfavourite-btn" onClick={this.handleFav}>
+                  Un-Favorite{" "}
+                </button>
+              ) : (
+                <button className="favourite-btn" onClick={this.handleFav}>
+                  Favorite
+                </button>
+              )} */}
+
+              <button
+                className={fav ? "unfavourite-btn" : "favourite-btn"}
+                onClick={() => onClickFav(movies)}
+              >
+                {fav ? "Un-Favorite" : "Favorite"}
+              </button>
+
+              <button
+                className={isIncart ? "unfavourite-btn" : "cart-btn"}
+                onClick={() => onClickAddtocart(movies)}
+              >
+                {isIncart ? "Remove from Cart" : "Add to Cart"}
+              </button>
             </div>
           </div>
         </div>
