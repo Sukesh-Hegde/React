@@ -1,12 +1,11 @@
-import MovieList from "./MovieList"
+import MovieList from "./MovieList";
+import Navbar from "./Navbar";
 
-function App() {
+export default function App() {
   return (
     <>
-      <h1>Movie App</h1>
+      <Navbar />
       <MovieList />
     </>
   );
 }
-
-export default App;
