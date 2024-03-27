@@ -82,7 +82,7 @@ class MoviList extends React.Component {
     const {movies} = this.state;
     const movieId = movies.indexOf(movie);
 
-    movies[movieId].isInCart = !movies[movieId].isInCart;
+    movies[movieId].isIncart = !movies[movieId].isIncart;
 
     this.setState({
         movies,
