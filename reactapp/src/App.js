@@ -2,7 +2,6 @@ import React from "react";
 import MovieList from "./MovieList";
 import Navbar from "./Navbar";
 import {movies} from "./moviesData"
-import "./index.css"
 
 
 

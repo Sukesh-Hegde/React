@@ -1,14 +1,11 @@
-import React from "react";
 
-class MovieCard extends React.Component {
-  
-  render() {
+function MovieCard(props) {
 
       const { movies, addStars, onDecStars, onClickFav, onClickAddtocart } =
-        this.props;
+        props;
 
     const { title, plot, poster, price, rating, stars, fav, isIncart } =
-      this.props.movies;
+      props.movies;
 
     return (
       <div className="main">
@@ -47,11 +44,11 @@ class MovieCard extends React.Component {
               </div>
 
               {/* {fav ? (
-                <button className="unfavourite-btn" onClick={this.handleFav}>
+                <button className="unfavourite-btn" onClick={handleFav}>
                   Un-Favorite{" "}
                 </button>
               ) : (
-                <button className="favourite-btn" onClick={this.handleFav}>
+                <button className="favourite-btn" onClick={handleFav}>
                   Favorite
                 </button>
               )} */}
@@ -75,6 +72,6 @@ class MovieCard extends React.Component {
       </div>
     );
   }
-}
+
 
 export default MovieCard;
