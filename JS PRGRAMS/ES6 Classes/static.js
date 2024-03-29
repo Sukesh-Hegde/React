@@ -23,5 +23,5 @@ class Vehicle {
 
 const v1 = new Vehicle("Car", "blue", 4);
 console.log(v1);
-Vehicle.showMsg();
+Vehicle.showMsg();//static method is only invoked by the class
 console.log(Vehicle.vName);
