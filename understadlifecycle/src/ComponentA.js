@@ -7,27 +7,37 @@ class ComponentA extends React.Component {
 
     this.state = {
       name: "ComponentA",
+      data: []
     };
-    console.log("ComponentA Constructed"); 
+    console.log("ComponentA Constructed");
   }
 
-  static getDerivedStateFromProps(){
+  static getDerivedStateFromProps() {
     console.log("ComponetA getDerivedStateByProps");
-    return null
+    return null;
   }
-
-  componentDidMount(){
+  //https://jsonplaceholder.typicode.com/users
+  componentDidMount() {
     console.log("ComponentA ComponentDidMount");
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => this.setState({data}));
   }
 
   render() {
-    console.log("ComponentA renderd");
 
     return (
-    (<>
-      <h1>{this.state.name}</h1>
-      <ComponentB/>
-    </>));
+      <>
+        <h1>{this.state.name}</h1>
+        <ul>
+        {this.state.data.map((d)=>{
+            return(
+                <li>{d.username}</li>
+            )
+        })}
+      </ul>
+      </>
+    );
   }
 }
 
