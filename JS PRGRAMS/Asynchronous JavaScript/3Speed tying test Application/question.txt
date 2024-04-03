@@ -1,0 +1,47 @@
+Problem statement
+Create a typing speed test application that measures the user's typing speed and accuracy. The application should display a paragraph and a 30-second timer. The accuracy and speed should be calculated based on the words complemented in the specified time.
+
+Objectives
+
+Initially the input field with id "start-btn" is set to displayed and the paragraph field with id "sentence" is empty.
+
+Task 1:
+
+On click of button with id "start-btn" following operation should be performed:
+
+The input field with id "input should be enabled.
+
+Their paragraph should be displayed on the screen.
+
+The start button should be set to disabled.
+
+The timer for 30 sec should start.
+
+In the p tag with id "timer" the remaining time should be displayed which automatically updates every second.
+Task 2:
+
+As the timer ends, the following operation should be performed:
+
+The div with the id "result" is initially set as display none. As the timer ends, the display should be set to block display with all the information like speed and accuracy and retry test button.
+
+The input and start buttons should be disabled.
+Task 3:
+
+The retake Test in the "result" div should be able to do the following operation:
+
+The start button should be enabled.
+
+The div with id "result" display should be set to none.
+
+The input should be set to an empty string.
+
+Note:
+The application should calculate the user's typing speed by dividing the number of correctly typed words in the time taken and multiplying by 60.
+
+The application should calculate the user's accuracy percentage by dividing the number of correctly typed characters by the total number of characters and multiplying by 100.
+
+The user should be able to retake the typing test multiple times.
+
+Expected Output:
+
+https://files.codingninjas.in/tyoing-31323.gif
