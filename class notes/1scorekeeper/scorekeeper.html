@@ -43,7 +43,7 @@
             <div>
                 {ballWiseRes.map((res, index) => (
                     <>
-                    {index%6 == 0? <br/> : null }
+                    {index%6 == 0? <br/> : null } to break the line when 6 ball is over
                     <span key={index} style={{ color: res === "W" ? "red" : "black" }} >{res == 0 ?<strong>.</strong>: res}  </span> &nbsp;&nbsp;&nbsp;
                     </>
                 ))}
