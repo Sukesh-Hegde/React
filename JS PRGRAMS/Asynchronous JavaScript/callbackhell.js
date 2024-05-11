@@ -14,3 +14,7 @@ function print() {
 }
 
 print();
+
+// let text = "  helo world ";
+// let Trimmed = text.trim();
+// console.log(Trimmed);
