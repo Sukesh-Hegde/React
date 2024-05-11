@@ -19,7 +19,6 @@
         let hit = 0;
         let inputRef = React.createRef();
 
-
      
         function addScore(num) {
             hit =num;
@@ -44,6 +43,7 @@
             }
 
             ballWiseRes.unshift(
+                // need to acces current attribute from the inputRef
                 // <span>{hit}{","}{inputRef.current.value}</span>
                 <span>{`${hit}, ${inputRef.current.value} `}</span>
             );
