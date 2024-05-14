@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="CMT.css">
+    <title>React App</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        let customers = [];
+        const capacity = 25;
+        let seatsLeft = 25;
+
+        const handleFormSubmit = (event) => {
+            event.preventDefault();
+            const count = parseInt(event.target.elements.count.value);
+            const name = event.target.elements.name.value;
+            const phone = event.target.elements.phone.value;
+
+            // Guest count validation
+            if (count > seatsLeft) {
+                alert("Guest count exceeds capacity.");
+                return;
+            }
+
+            // Check for duplicate name entry
+            const existingCustomer = customers.find((customer) => customer.name === name);
+            if (existingCustomer) {
+                alert("Customer already exists.");
+                return;
+            }
+
+            // Insert the customer record
+            customers.push({ count, name, phone, checkIn: new Date().toLocaleTimeString() });
+            seatsLeft -= count;
+            event.target.reset();
+            renderApp();
+        };
+
+        const handleRemoveEntry = (index) => {
+            const removedCustomer = customers.splice(index, 1)[0];
+            seatsLeft += removedCustomer.count;
+            renderApp();
+        };
+
+        const renderApp = () => {
+            const App = () => (
+                <div className="App" style={{ textAlign: "center" }}>
+                    <div>
+                        <h2>Total Capacity: {capacity}</h2>
+                        <h2>Seats Left: {seatsLeft}</h2>
+                    </div>
+
+                    <form onSubmit={handleFormSubmit}>
+                        <label>
+                            Count:
+                            <input type="number" name="count" required />
+                        </label>
+                        <label>
+                            Name:
+                            <input type="text" name="name" required />
+                        </label>
+                        <label>
+                            Phone:
+                            <input type="tel" name="phone" required />
+                        </label>
+                        <button type="submit">Submit</button>
+                    </form>
+
+                    <table border="1px" style={{ margin: "auto" }}>
+                        <thead>
+                            <tr>
+                                <th>Count</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Check In</th>
+                                <th>Remove Entry</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {customers.map((customer, index) => (
+                                <tr key={index}>
+                                    <td>{customer.count}</td>
+                                    <td>{customer.name}</td>
+                                    <td>{customer.phone}</td>
+                                    <td>{customer.checkIn}</td>
+                                    <td>
+                                        <button onClick={() => handleRemoveEntry(index)}>Delete</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            );
+
+            const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+            rootElement.render(<App />);
+        };
+
+        renderApp();
+    </script>
+
+</body>
+
+</html>
+
