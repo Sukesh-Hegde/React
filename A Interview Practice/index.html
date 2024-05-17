@@ -1,0 +1,70 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box" >
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Timer</title>
+    <style>
+        #count {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p id="count">Click the button to start counting: </p>
+    <button id="startStopBtn">Start Counting</button>
+
+    <script>
+        let counting = false;
+        let count = 1;
+        let increment = 1;
+        let intervalId;
+
+        function startStopCounting() {
+            const startStopBtn = document.getElementById("startStopBtn");
+            const countDisplay = document.getElementById("count");
+
+            if (!counting) {
+                intervalId = setInterval(() => {
+                    countDisplay.textContent = "Count: " + count;
+                    count += increment;
+                    if (count > 10 || count < 1) {
+                        increment *= -1; // Change direction of counting
+                        count += increment;
+                    }
+                }, 1000);
+                counting = true;
+                startStopBtn.textContent = "Stop Counting";
+            } else {
+                clearInterval(intervalId);
+                counting = false;
+                startStopBtn.textContent = "Start Counting";
+            }
+        }
+
+        document.getElementById("startStopBtn").addEventListener("click", startStopCounting);
+    </script>
+
+</body>
+
+</html>
