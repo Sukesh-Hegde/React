@@ -23,7 +23,7 @@ class App extends React.Component  {
       movies[movieId].stars += 0.5;
     }
     this.setState({
-      movies,
+      movies, //if key value pair is same then we can use only one name (movies=movies)
     });
   };
 
