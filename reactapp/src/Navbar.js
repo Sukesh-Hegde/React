@@ -44,9 +44,8 @@ const CartCount = styled.div`
   visibility: ${(props) => (props.show ? "visible" : "hidden")};
 `;
 
-class Navbar extends React.Component {
-  render() {
-const {cartCount} = this.props;   
+const Navbar = ({ cartCount }) => {
+  
 return (
   <>
     <Nav>
@@ -63,6 +62,6 @@ return (
   </>
 );
   }
-}
+
 
 export default Navbar;
