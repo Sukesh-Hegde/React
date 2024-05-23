@@ -16,7 +16,7 @@ export default class Timer extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return true; //if we return false i will  allow rerenderig
+    return true; //if we return false it will  allow rerenderig
   }
 
   render() {
