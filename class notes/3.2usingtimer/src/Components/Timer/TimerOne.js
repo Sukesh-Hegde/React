@@ -16,7 +16,7 @@ export default class Timer extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return true;
+    return true; //if we return false i will  allow rerenderig
   }
 
   render() {
@@ -31,23 +31,34 @@ export default class Timer extends React.Component {
     );
   }
 
-  componentDidMount() {
-    console.log("TimerOne componentDidMount");
-    console.log("-------------------------------");
-
-    this.timer = setInterval(() => {
-      this.setState((prevState) => ({
-        time: prevState.time + 1,{}
-      }));
-    }, 1000);
-  }
+  // componentDidMount() {
+  //   console.log("TimerOne componentDidMount");
+  //   console.log("-------------------------------");
+  // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log("Timer getSnapshotBeforeUpdate");
     return null;
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     console.log("Timer componentDidUpdate");
     console.log("-------------------------------");
+
+    if (prevProps.timerOn !== this.props.timerOn) {
+      if (this.props.timerOn) {
+        this.timer = setInterval(() => {
+          this.setState((prevState) => ({
+            time: prevState.time + 1,
+          }));
+        }, 1000);
+      } else {
+        clearInterval(this.timer);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    console.log("TimerOne componentWillUnmount");
+    clearInterval(this.timer);
   }
 }
