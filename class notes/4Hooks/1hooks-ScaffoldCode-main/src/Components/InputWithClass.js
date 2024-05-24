@@ -21,6 +21,14 @@ export default class Input extends React.Component {
     });
   };
 
+  ComponentDidMount() {
+    document.title = this.state.name + " " + this.state.lastname;
+  }
+
+  ComponentDidUpdate() {
+    document.title = this.state.name + " " + this.state.lastname;
+  }
+
   render() {
     return (
       <>
