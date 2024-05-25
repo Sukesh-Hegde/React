@@ -7,6 +7,7 @@ export default class Input extends React.Component {
       name: "",
       lastname: "",
     };
+    this.timer = null;
   }
 
   handleName = (e) => {
@@ -21,12 +22,19 @@ export default class Input extends React.Component {
     });
   };
 
-  ComponentDidMount() {
+  componentDidMount() {
+    document.title = this.state.name + " " + this.state.lastname;
+    this.timer = setInterval(() => {
+      console.log("Window-width: ", window.innerWidth);
+    }, 2000);
+  }
+
+  componentDidUpdate() {
     document.title = this.state.name + " " + this.state.lastname;
   }
 
-  ComponentDidUpdate() {
-    document.title = this.state.name + " " + this.state.lastname;
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   render() {
@@ -47,14 +55,16 @@ export default class Input extends React.Component {
   }
 }
 
-
-function Row(props){
-    const{label} = props;
-    return(
-        <>
-        <lable>{label}<br/></lable>
-        {props.children}
-        <hr />
-        </>
-    )
+function Row(props) {
+  const { label } = props;
+  return (
+    <>
+      <lable>
+        {label}
+        <br />
+      </lable>
+      {props.children}
+      <hr />
+    </>
+  );
 }
