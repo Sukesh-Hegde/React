@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 //Blogging App using Hooks
 export default function Blog() {
@@ -7,16 +7,19 @@ export default function Blog() {
 
   const [formData, setFormData] = useState({ title: "", content: "" });
   const [blogs, setBlogs] = useState([]);
+  const titleRef = useRef(null);
 
   function handleSubmit(e) {
     e.preventDefault();
 
     setBlogs([{ title: formData.title, content: formData.content }, ...blogs]);
     setFormData({ title: "", content: "" });
+
+    titleRef.current.focus();
   }
 
-  function removeBlog(i){
-    setBlogs(blogs.filter((blog,index)=> i!==index))
+  function removeBlog(i) {
+    setBlogs(blogs.filter((blog, index) => i !== index));
   }
   return (
     <>
@@ -28,6 +31,7 @@ export default function Blog() {
               className="input"
               placeholder="Enter the Title of the Blog here.."
               value={formData.title}
+              ref={titleRef}
               onChange={(e) =>
                 setFormData({
                   title: e.target.value,
@@ -64,7 +68,9 @@ export default function Blog() {
           <p>{blog.content}</p>
 
           <div className="blog-btn">
-            <button onClick={() => removeBlog(i)} className="btn remove">Delete</button>
+            <button onClick={() => removeBlog(i)} className="btn remove">
+              Delete
+            </button>
           </div>
         </div>
       ))}
