@@ -1,26 +1,12 @@
-import { useEffect, useState } from "react";
+import useLocalStorage from "./useLocalStorage";
 
 export default function Reset(){
+  //object de-structuring
+  const { email, setEmail } = useLocalStorage();
 
-    const [email,setEmail] = useState("");
-
-    //to get the email which is stored in the local storage
-    useEffect(()=>{
-      let savedEmail = localStorage.getItem("email");
-
-      if (savedEmail) {
-        setEmail(savedEmail);
-      }
-    },[])
-
-    //for email to be present when going back from Reset--> login page
-    useEffect(() => { 
-      localStorage.setItem("email", email);
-    },[email])
-    
-    return(
-        <>
-        <h3>Reset Password for</h3>
+  return (
+    <>
+      <h3>Reset Password for</h3>
       <input
         placeholder="Enter Email"
         value={email}
@@ -35,8 +21,8 @@ export default function Reset(){
         }}
       >
         Submit
-      </button>      
+      </button>
       <br />
-        </>
-    )
+    </>
+  );
 }

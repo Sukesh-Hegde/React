@@ -1,23 +1,11 @@
-import { useEffect } from "react";
 import { useState } from "react";
+import useLocalStorage from "./useLocalStorage";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  //for email to be present after comming back from Reset--> login page
-  useEffect(() => {
-    let savedEmail = localStorage.getItem("email");
-
-    if (savedEmail) {
-      setEmail(savedEmail);
-    }
-  }, []);
-
-  //storing email in the local storage
-  useEffect(() => {
-    localStorage.setItem("email", email);
-  }, [email]);
+  //object de-structuring
+  const { email, setEmail } = useLocalStorage();
 
   return (
     <>
