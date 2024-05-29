@@ -1,6 +1,10 @@
 import { useState, useRef, useEffect, useReducer } from "react";
 import { db } from "../firebaseInit";
 
+import { collection, addDoc } from "firebase/firestore";
+
+
+
 function blogsReducer(state, action) {
   switch (action.type) {
     case "ADD":
@@ -15,8 +19,6 @@ function blogsReducer(state, action) {
 
 //Blogging App using Hooks
 export default function Blog() {
-  //   const [title, setTitle] = useState("");
-  //   const [content, setContent] = useState("");
 
   const [formData, setFormData] = useState({ title: "", content: "" });
   //   const [blogs, setBlogs] = useState([]);
@@ -36,14 +38,20 @@ export default function Blog() {
     }
   }, [blogs]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    // setBlogs([{ title: formData.title, content: formData.content }, ...blogs]);
     dispatch({
       type: "ADD",
       blog: { title: formData.title, content: formData.content },
     });
+
+    // Add a new document with a generated id.
+    const docRef = await addDoc(collection(db, "cities"), {
+      name: "Tokyo",
+      country: "Japan",
+    });
+      console.log("Document written with ID: ", docRef.id);
 
     setFormData({ title: "", content: "" });
 
