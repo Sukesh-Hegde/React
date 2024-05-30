@@ -1,80 +1,119 @@
-import { useState, useRef, useEffect, useReducer } from "react";
+//Blogging App with Firebase
+import { useState, useRef, useEffect } from "react";
+
+//Import fireStore reference from frebaseInit file
 import { db } from "../firebaseInit";
 
-import { collection, addDoc } from "firebase/firestore";
+//Import all the required functions from fireStore
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  onSnapshot,
+  setDoc,
+} from "firebase/firestore";
 
-
-
-function blogsReducer(state, action) {
-  switch (action.type) {
-    case "ADD":
-      return [action.blog, ...state];
-    case "REMOVE":
-      return state.filter((blog, index) => index !== action.index);
-
-    default:
-        return [];
-  }
-}
-
-//Blogging App using Hooks
 export default function Blog() {
+  const [formData, setformData] = useState({ title: "", content: "" });
+  const [blogs, setBlogs] = useState([]);
 
-  const [formData, setFormData] = useState({ title: "", content: "" });
-  //   const [blogs, setBlogs] = useState([]);
-  const [blogs, dispatch] = useReducer(blogsReducer, []); //using useReducer
   const titleRef = useRef(null);
 
   useEffect(() => {
-    //it will ensure focus should be in title at first time
     titleRef.current.focus();
   }, []);
 
   useEffect(() => {
-    if (blogs.length && blogs[0].title) {
-      document.title = blogs[0].title;
-    } else {
-      document.title = "No Blogs";
-    }
-  }, [blogs]);
+    /*********************************************************************** */
+    /** get all the documents from the fireStore using getDocs() */
+    /*********************************************************************** */
+    // async function fetchData(){
+    //     const snapShot =await getDocs(collection(db, "blogs"));
+    //     console.log(snapShot);
+
+    //     const blogs = snapShot.docs.map((doc) => {
+    //         return{
+    //             id: doc.id,
+    //             ...doc.data()
+    //         }
+    //     })
+    //     console.log(blogs);
+    //     setBlogs(blogs);
+
+    // }
+
+    // fetchData();
+    /*********************************************************************** */
+
+    /*********************************************************************** */
+    /** Get RealTime Updates from the databse using onSnapshot() */
+    /*********************************************************************** */
+
+    const unsub = onSnapshot(collection(db, "blogs"), (snapShot) => {
+      const blogs = snapShot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      });
+      console.log(blogs);
+      setBlogs(blogs);
+    });
+
+    /*********************************************************************** */
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    dispatch({
-      type: "ADD",
-      blog: { title: formData.title, content: formData.content },
-    });
-
-    // Add a new document with a generated id.
-    const docRef = await addDoc(collection(db, "cities"), {
-      name: "Tokyo",
-      country: "Japan",
-    });
-      console.log("Document written with ID: ", docRef.id);
-
-    setFormData({ title: "", content: "" });
-
     titleRef.current.focus();
+
+    // Commenting setBlogs() as realtime Updates will be recieved from the database
+    //setBlogs([{title: formData.title,content:formData.content}, ...blogs]);
+
+    /*********************************************************************** */
+    /** Add a new document with an auto generated id. */
+    /*********************************************************************** */
+
+    const docRef = doc(collection(db, "blogs"));
+
+    await setDoc(docRef, {
+      title: formData.title,
+      content: formData.content,
+      createdOn: new Date(),
+    });
+
+    /*********************************************************************** */
+
+    setformData({ title: "", content: "" });
   }
 
-  function removeBlog(i) {
-    // setBlogs(blogs.filter((blog, index) => i !== index));
-    dispatch({ type: "REMOVE", index: i });
+  async function removeBlog(id) {
+    //setBlogs( blogs.filter((blog,index)=> index !== i));
+
+    /*********************************************************************** */
+    /** Deleting a document from the Firestore */
+    /*********************************************************************** */
+    const docRef = doc(db, "blogs", id);
+    await deleteDoc(docRef);
+
+    /*********************************************************************** */
   }
+
   return (
     <>
       <h1>Write a Blog!</h1>
       <div className="section">
+        {/* Form for to write the blog */}
         <form onSubmit={handleSubmit}>
           <Row label="Title">
             <input
               className="input"
               placeholder="Enter the Title of the Blog here.."
-              value={formData.title}
               ref={titleRef}
+              value={formData.title}
               onChange={(e) =>
-                setFormData({
+                setformData({
                   title: e.target.value,
                   content: formData.content,
                 })
@@ -86,13 +125,10 @@ export default function Blog() {
             <textarea
               className="input content"
               placeholder="Content of the Blog goes here.."
-              value={formData.content}
               required
+              value={formData.content}
               onChange={(e) =>
-                setFormData({
-                  content: e.target.value,
-                  title: formData.title,
-                })
+                setformData({ title: formData.title, content: e.target.value })
               }
             />
           </Row>
@@ -103,14 +139,22 @@ export default function Blog() {
 
       <hr />
 
+      {/* Section where submitted blogs will be displayed */}
       <h2> Blogs </h2>
       {blogs.map((blog, i) => (
         <div className="blog" key={i}>
           <h3>{blog.title}</h3>
+          <hr />
           <p>{blog.content}</p>
 
           <div className="blog-btn">
-            <button onClick={() => removeBlog(i)} className="btn remove">
+            <button
+              onClick={() => {
+                // passing the blog id instead of index of the array to remove the document from the database
+                removeBlog(blog.id);
+              }}
+              className="btn remove"
+            >
               Delete
             </button>
           </div>
