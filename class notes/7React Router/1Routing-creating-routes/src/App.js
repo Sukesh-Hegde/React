@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Items from "./pages/Items";
 import Navbar from "./components/Navbar";
+import ItemDetails from "./pages/itemDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -11,8 +12,18 @@ function App() {
       element: <Navbar />,
       children: [
         { index: true, element: <Home /> },
-        { path: "/about", element: <About /> },
-        { path: "/item", element: <Items /> },
+        { path: "about", element: <About /> },
+        {
+          path: "items",
+          children: [
+            { index: true, element: <Items /> },
+            {
+              path: ":id",
+              element: <ItemDetails />,
+            },
+          ],
+        },
+        { path: "items/:id", element: <ItemDetails /> },
       ],
     },
   ]);
