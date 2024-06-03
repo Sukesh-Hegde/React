@@ -22,7 +22,11 @@ function Nav() {
           <h4>Coding Ninjas</h4>
         </div>
         <div className={style.nav_details}>
-          <button>Courses</button>
+          <button>
+            <NavLink to="/courses" >
+              {({isActive})=>(isActive?"On Courses":"Go To Courses")}
+            </NavLink>
+            </button>
         </div>
       </div>
      
