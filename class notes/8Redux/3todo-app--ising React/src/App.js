@@ -23,8 +23,8 @@ function App() {
     <div>
       <h1>To Do App</h1>
       <Provider store={store}>
-        <TodoForm onCreateTodo={createTodo} />
-        <TodoList todos={todos} onToggle={toggleTodo} />
+        <TodoForm  />
+        <TodoList  />
       </Provider>
     </div>
   );
