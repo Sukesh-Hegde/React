@@ -32,3 +32,39 @@
 // var type = typeof('5'-3);
 // console.log(type);
 
+// =====================================================================
+
+// const http = require('http');
+
+// const server = http.createServer();
+
+// const port = 3000;
+
+// server.listen(port, () => {
+//     console.log(`server is running on port ${port}`);
+// })
+
+// =====================================================================
+
+// const obj ={ 
+//     "1" : "a",
+//     1 : "b",
+//     [1]: "c"
+// };
+
+// console.log(obj["1"]);
+
+// var a = 75;
+// function fun() {
+//   b = 16;
+//   console.log(a);
+//   var a = 12;
+// }
+
+// function fun1() {
+//   console.log(b);
+// }
+
+// fun();
+// fun1();
+
