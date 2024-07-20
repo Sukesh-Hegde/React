@@ -4,6 +4,7 @@ export default function TextForm(props) {
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("converted to UpperCase", "success");
   };
 
   const handleOnChange = (event) => {
@@ -13,6 +14,7 @@ export default function TextForm(props) {
   const handleLoClick = (event) => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert("converted to LowerCase", "success");
   };
   const speak = () => {
     let msg = new SpeechSynthesisUtterance();
@@ -20,24 +22,35 @@ export default function TextForm(props) {
     window.speechSynthesis.speak(msg);
   };
 
-    const clear = () => {
-      setText("");
-    };
+  const clear = () => {
+    setText("");
+    props.showAlert("Message Cleared", "success");
+  };
 
-   const handleLoCopy = () =>{
+  const handleLoCopy = () => {
     let text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
-   }
+    props.showAlert("Text copied", "success");
+  };
 
   const [text, setText] = useState("");
   return (
     <>
-      <div className="container">
+      <div
+        className="container"
+        style={{
+          color: props.mode == "light" ? "#3a275c" : "white",
+        }}
+      >
         <h1>{props.heading}</h1>
         <div className="mb-3">
           <textarea
             className="form-control"
+            style={{
+              backgroundColor: props.mode == "dark" ? "#3a275c" : "white",
+              color: props.mode == "light" ? "#3a275c" : "white",
+            }}
             value={text}
             onChange={handleOnChange}
             id="myBox"
@@ -69,14 +82,23 @@ export default function TextForm(props) {
           </button>
         </div>
       </div>
-      <div className="container my-2">
+      <div
+        className="container my-2"
+        style={{
+          color: props.mode == "light" ? "#3a275c" : "white",
+        }}
+      >
         <h2>Your text summary</h2>
         <p>
-          {text.split(" ").length} words and {text.length} characters
+          {text.split(" ").length - 1} words and {text.length} characters
         </p>
-        <p>{0.08 * text.split(" ").length} Minutes to read</p>
+        <p>{0.08 * (text.split(" ").length - 1)} Minutes to read</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>
+          {text.length > 0
+            ? text
+            : "Enter something in the textbox above to preview it here"}
+        </p>
       </div>
     </>
   );
