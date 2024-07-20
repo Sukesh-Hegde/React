@@ -8,7 +8,6 @@ function App() {
       <Navbar aboutText="AboutText" />
       <div className="container my-3">
         <TextForm heading="Enter the text to analize below" />
-        <button className="btn btn-primary">Conver to uppercase</button>
       </div>
     </>
   );
