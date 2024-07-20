@@ -24,6 +24,12 @@ export default function TextForm(props) {
       setText("");
     };
 
+   const handleLoCopy = () =>{
+    let text = document.getElementById("myBox");
+    text.select();
+    navigator.clipboard.writeText(text.value);
+   }
+
   const [text, setText] = useState("");
   return (
     <>
@@ -56,6 +62,10 @@ export default function TextForm(props) {
             className="btn btn btn-danger mx-2 my-2"
           >
             Clear
+          </button>
+
+          <button className="btn btn-primary " onClick={handleLoCopy}>
+            Copy
           </button>
         </div>
       </div>
