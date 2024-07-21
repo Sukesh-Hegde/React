@@ -11,7 +11,6 @@ function App() {
   const [alert, setAlert] = useState(null);
 
   const toggleMode = () => {
-    console.log("toggle clicked");
     if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "#3a275c";
@@ -39,13 +38,17 @@ function App() {
         <Alert alert={alert} />
         <div className="container my-3">
           <Routes>
-            <Route exact path="/about" element={<About />} />
+            <Route
+              exact
+              path="/about"
+              element={<About mode={mode}  />}
+            />
             <Route
               exact
               path="/"
               element={
                 <TextForm
-                  heading="Enter the text to analyze below:-"
+                  heading="Try TextUtils - Word Counter, Character Couter, Remove extra spaces"
                   mode={mode}
                   showAlert={showAlert}
                 />
