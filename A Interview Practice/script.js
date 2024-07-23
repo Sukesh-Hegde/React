@@ -52,7 +52,7 @@
 //     [1]: "c"
 // };
 
-// console.log(obj["1"]);
+// console.log(obj["1"]); // c
 
 // var a = 75;
 // function fun() {
@@ -65,6 +65,22 @@
 //   console.log(b);
 // }
 
-// fun();
-// fun1();
+// fun(); //undefined
+// fun1(); //16
+
+
+// var def = function d(){
+//     console.log("Hai");
+// }
+// console.log(def);
+
+
+// console.log("def", def);
+// const def = function c(){
+//     console.log("hii")
+// };
+// console.log("def1", def);
+// console.log("def2", def());
+
+
 
