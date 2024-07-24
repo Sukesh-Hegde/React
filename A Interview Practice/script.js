@@ -83,4 +83,11 @@
 // console.log("def2", def());
 
 
+// function example() {
+//   {
+//     var b = 11;
+//   }
+//   console.log(b); 
+// }
 
+// example(); //11
