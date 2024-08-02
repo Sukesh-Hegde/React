@@ -11,17 +11,24 @@ function ToDoList() {
 
   return (
     <div className="container">
-    <ul>
-      {todos.map((todo,index) => (
-        <li key={todo.id}>
-          <span className="content">{todo.text}</span>
-          <span className={todo.completed ? 'completed':'pending'}>{todo.completed ? 'Completed': 'Pending'}</span>
-          <button className="btn btn-warning"
-          onClick={()=>{disptach(toggleTodo(index))}}
-          >Toggle</button>
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>
+            <span className="content">{todo.text}</span>
+            <span className={todo.completed ? "completed" : "pending"}>
+              {todo.completed ? "Completed" : "Pending"}
+            </span>
+            <button
+              className="btn btn-warning"
+              onClick={() => {
+                disptach(toggleTodo(index));
+              }}
+            >
+              Toggle
+            </button>
           </li>
-      ))}
-    </ul>
+        ))}
+      </ul>
     </div>
   );
 }

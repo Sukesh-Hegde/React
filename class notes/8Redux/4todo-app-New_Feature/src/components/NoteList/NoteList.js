@@ -7,15 +7,20 @@ function NoteList() {
   const dispatch = useDispatch();
   return (
     <div className="container">
-    <ul>
-      {notes.map((note,index) => (
-        <li>
+      <ul>
+        {notes.map((note, index) => (
+          <li key={index}>
             <p>{note.createdOn.toLocaleDateString()}</p>
             <p className="note-content">{note.text}</p>
-            <button className="btn btn-danger"  onClick={() => dispatch(deleteNote(index))}>Delete</button>
-            </li>
-      ))}
-    </ul>
+            <button
+              className="btn btn-danger"
+              onClick={() => dispatch(deleteNote(index))}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

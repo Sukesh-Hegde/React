@@ -8,7 +8,7 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   const createTodo = (text) => {
-    setTodos([...todos, { id: todos.length + 1, text, completed: false}]);
+    setTodos([...todos, { id: todos.length + 1, text:text, completed: false}]);
   };
 
   const toggleTodo = (index)=>{
@@ -16,7 +16,7 @@ function App() {
     list[index].completed = !list[index].completed;
     setTodos(list);
   }
-
+console.log(todos);
   return (
     <div>
       <h1>To Do App</h1>
