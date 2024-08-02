@@ -57,3 +57,12 @@ store.dispatch(toggleTodo(0));
 
 // Read the Store
 console.log(store.getState());
+
+
+
+//selectors
+ const getCompletedTodos = (state) =>{
+    return state.todos.filter((todo) => todo.completed === true);
+ }
+
+ console.log(getCompletedTodos(store.getState()));
