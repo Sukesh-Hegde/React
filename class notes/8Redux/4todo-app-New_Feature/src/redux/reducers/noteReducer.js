@@ -2,8 +2,8 @@ import { ADD_NOTE, DELETE_NOTE } from "../actions/noteActions";
 
 const initialState = {
   notes: [
-    { text: "Go to Gym at 6", createdOn: new Date() },
-    { text: "Study at 8", createdOn: new Date() },
+    { text: "Go to Gym at 6", createdOn: new Date().toISOString() },
+    { text: "Study at 8", createdOn: new Date().toISOString() },
   ],
 };
 
@@ -16,7 +16,7 @@ export function noteReducer(state = initialState, action) {
           ...state.notes,
           {
             text: action.text,
-            createdOn: new Date(),
+            createdOn: new Date().toISOString(),
           },
         ],
       };
