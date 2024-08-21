@@ -25,6 +25,3 @@ function init() {
 }
 requestAnimationFrame(init);
 
-console.log();
-console.log();
-console.log();
