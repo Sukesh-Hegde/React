@@ -118,3 +118,22 @@
 // console.log(fib(50)); // Outputs: 12586269025, computed efficiently
 
 // **************************************************************************************
+
+
+// converting array to object
+// let arr = [1,2,3,4,5];
+// let obj = {...arr}
+// console.log(obj);
+
+
+
+// const arr=[3,4,5,6];
+// arr.foo = 'hii'
+
+// for (let i in arr) {
+//   console.log(i);
+// }
+
+// for (let i of arr) {
+//   console.log(i);
+// }
