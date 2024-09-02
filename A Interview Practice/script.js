@@ -88,7 +88,6 @@
 
 // example(); //11
 
-
 // **************************************************************************************
 //  MEMOIZATION
 
@@ -109,7 +108,6 @@
 //     console.log(cache);
 //     return result;
 //   }
-  
 
 //   return fibonacci;
 // }
@@ -119,13 +117,10 @@
 
 // **************************************************************************************
 
-
 // converting array to object
 // let arr = [1,2,3,4,5];
 // let obj = {...arr}
 // console.log(obj);
-
-
 
 // const arr=[3,4,5,6];
 // arr.foo = 'hii'
@@ -151,14 +146,12 @@
 
 // console.log(obj3 == obj1);
 
-
 // let sum =(e)=>{
 //   return e + 1;
 // }
 
 // const result = sum(5);
 // console.log(result);
-
 
 // var car = new Vehicle("Honda", "white", "2010", "UK");
 // console.log(car);
@@ -201,4 +194,15 @@
 // let output = removeDuplicate(input);
 
 // console.log(output);
+
+// **************************************************************************************
+
+
+// arrow();
+
+// var arrow = () => {
+//   console.log("arrow");
+// };
+
+
 
