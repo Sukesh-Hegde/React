@@ -8,16 +8,16 @@ const app = express();
 // Connect to MongoDB
 connectUsingMongoose();
 
-// app.post("/user", async (req, res) => {
-//   try {
-//     const { username, email, age } = req.body;
-//     const newUser = new User({ username, email, age });
-//     const savedUser = await newUser.save();
-//     res.json(savedUser);
-//   } catch (error) {
-//     res.status(500).json({ message: "Error adding user" });
-//   }
-// });
+app.post("/user", async (req, res) => {
+  try {
+    const { username, email, age } = req.body;
+    const newUser = new User({ username, email, age });
+    const savedUser = await newUser.save();
+    res.json(savedUser);
+  } catch (error) {
+    res.status(500).json({ message: "Error adding user" });
+  }
+});
 
 // // Find One User
 // app.get("/user/:id", async (req, res) => {
