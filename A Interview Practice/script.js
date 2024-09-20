@@ -204,5 +204,37 @@
 //   console.log("arrow");
 // };
 
+// **************************************************************************************
+
+// Archer interview
+
+
+// class Alpha { 
+//     int x = 0; 
+//     Alpha() 
+//     { System.out.println("Parent"); 
+
+//     } 
+// } 
+// class Beta extends Alpha{
+//      Beta() {
+//          super(); 
+//         } 
+//     } 
+// class Sum { 
+// public static void main(String[] args) {
+    
+//      Beta d = new Beta();
+// }
+// }
+
+
+// function sample(element, index, array) {
+//   return element >= 10;
+// }
+// var retval1 = [2, 5, 8, 1, 4].some(sample);
+// console.log("Returned value is :" + retval1);
+// var retval2 = [12, 5, 8, 1, 4].some(sample);
+// console.log("Returned value is :" + retval2);
 
 
